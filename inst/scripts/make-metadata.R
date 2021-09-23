@@ -2,8 +2,11 @@
 
 meta <- data.frame(
   Title = c(
-    "Genomic Annotations (hg38)",
-    "Genomic Annotations (mm10)",
+    "Primary Genomic Annotations (hg38)",
+    "Primary Genomic Annotations (mm10)",
+    "Full Genomic Annotations (hg38)",
+    "Full Genomic Annotations (mm10)",
+    "R-loop Binding Proteins",
     "Gene Expression",
     "Feature Enrichment per Sample",
     "Feature Enrichment per RL-Region",
@@ -17,13 +20,16 @@ meta <- data.frame(
     "RLBase Sample Manifest"
   ),
   Description = c(
-    paste0("Human genomic annotations curated for use with RLSuite."),
-    paste0("Mouse genomic annotations curated for use with RLSuite."),
+    paste0("Primary Human genomic annotations curated for use with RLSuite."),
+    paste0("Primary Mouse genomic annotations curated for use with RLSuite."),
+    paste0("Full Human genomic annotations curated for use with RLSuite."),
+    paste0("Full Mouse genomic annotations curated for use with RLSuite."),
+    paste0("R-loop-binding proteins discovered from mass-spec studies."),
     paste0("Gene expression count tables from matched RNA-Seq experiments ",
            "corresponding to R-loop profiling. The counts, TPM, and VST-",
            "transformed counts are provided."),
-    paste0("Genomic feature enrichment statistics for each peakset in RLBase."),
-    paste0("Genomic feature enrichment statistics for the RL-Regions within RLBase."),
+    paste0("Genomic feature enrichment stats for each peakset in RLBase."),
+    paste0("Genomic feature enrichment stats for the RL-Regions in RLBase."),
     paste0("Bin-level read counts for RLBase samples around R-loop sites ",
            "discovered using long-read SMRF-Seq (gold-standard sites)."),
     paste0("Stacked classifier for deciding whether samples successfully mapped",
@@ -45,10 +51,13 @@ meta <- data.frame(
   Genome = c(
     "hg38",
     "mm10",
-    rep("hg38", 11)
+    "hg38",
+    "mm10",
+    rep("hg38", 12)
   ),
   SourceType = c(
-    rep("Multiple", 2),
+    rep("Multiple", 4),
+    "XLS/XLSX",
     "FASTQ",
     rep("Multiple", 8), 
     "BAM", 
@@ -59,12 +68,16 @@ meta <- data.frame(
   Species = c(
     "Homo sapiens",
     "Mus musculus",
-    rep("Homo sapiens", 11)
+    "Homo sapiens",
+    "Mus musculus",
+    rep("Homo sapiens", 12)
   ),
   TaxonomyId = c(
     9606,
     10090,
-    rep(9606, 11)
+    9606,
+    10090,
+    rep(9606, 12)
   ),
   Coordinate_1_based = TRUE,
   DataProvider = "Multiple",
@@ -72,6 +85,9 @@ meta <- data.frame(
   RDataClass = c(
     "list",
     "list",
+    "list",
+    "list",
+    "tbl",
     "SummarizedExperiment",
     "tbl",
     "tbl",
@@ -85,10 +101,13 @@ meta <- data.frame(
     "tbl"
   ),
   DispatchClass = "Rda",
-  Location_Prefix = "http://s3.amazonaws.com/experimenthub/",
+  Location_Prefix = "https://rlbase-data.s3.amazonaws.com/",
   RDataPath = c(
-    "RLHub/annotations_hg38.rda",
-    "RLHub/annotations_mm10.rda",
+    "RLHub/annotations_primary_hg38.rda",
+    "RLHub/annotations_primary_mm10.rda",
+    "RLHub/annotations_full_hg38.rda",
+    "RLHub/annotations_full_mm10.rda",
+    "RLHub/rlbps.rda",
     "RLHub/geneexp.rda",
     "RLHub/feature_enrichment_per_samples.rda",
     "RLHub/feature_enrichment_rlregions.rda",
@@ -102,8 +121,11 @@ meta <- data.frame(
     "RLHub/rlsamples.rda"
   ),
   Tags = c(
-    "annots_hg38",
-    "annots_mm10",
+    "annots_primary_hg38",
+    "annots_primary_mm10",
+    "annots_full_hg38",
+    "annots_full_mm10",
+    "rlbps",
     "gene_exp",
     "feat_enrich_samples",
     "feat_enrich_rlregions",
