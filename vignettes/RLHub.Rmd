@@ -1,0 +1,44 @@
+---
+title: "Accessing RLHub Data"
+author: "Henry Miller"
+date: "`r doc_date()`"
+vignette: >
+  %\VignetteIndexEntry{Accessing RLHub Data}
+  %\VignetteEngine{knitr::rmarkdown}
+output: 
+  BiocStyle::html_document
+---
+
+
+# Accessing RLHub Data
+
+RLHub is the Experiment Hub for the RLSuite toolchain. It contains annotations
+of R-Loop consensus regions and genomic features directly relevant to R-loops, 
+such as R-loop-forming sequencing (RLFS) and G-or-C skew regions.
+
+In the below example, we show how one can download this dataset from 
+ExperimentHub.
+
+```{r get-rlhub}
+library(ExperimentHub)
+eh <- ExperimentHub()
+query(eh , "RLHub")
+```
+
+One can then extract the data for this using
+
+```{r download-rlhub}
+rlhub_data <- eh[["EH1"]]
+```
+
+The different data types can be accessed with --
+
+```{r rlhub-types}
+head(availableData(rlhub_data))
+```
+
+# sessionInfo()
+
+```{r sessionInfo}
+sessionInfo()
+```
