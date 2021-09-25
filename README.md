@@ -1,26 +1,20 @@
-
 # RLHub
 
 <!-- badges: start -->
-[![BioC status](http://www.bioconductor.org/shields/build/release/bioc/RLHub.svg)](https://bioconductor.org/checkResults/release/bioc-LATEST/RLHub)
-<!-- badges: end -->
 
-The goal of RLHub is to ...
+[![BiocCheck](https://github.com/Bishop-Laboratory/RLHub/workflows/BiocCheck/badge.svg)](https://github.com/Bishop-Laboratory/RLHub/actions) [![BioC status](http://www.bioconductor.org/shields/build/release/bioc/RLHub.svg)](https://bioconductor.org/checkResults/release/bioc-LATEST/RLHub)
+
+<!-- badges: end -->
 
 ## Installation
 
-You can install the released version of RLHub from [CRAN](https://CRAN.R-project.org) with:
-
 ``` r
-install.packages("RLHub")
+remotes::install_github("Bishop-Laboratory/RLHub")
 ```
 
-## Example
+## Usage
 
-This is a basic example which shows you how to solve a common problem:
+The full vignette can be found [here](https://rlbase-data.s3.amazonaws.com/misc/rlhub_vignette.html).
 
-``` r
-library(RLHub)
-## basic example code
-```
+
 
