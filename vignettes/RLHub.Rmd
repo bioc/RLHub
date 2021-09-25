@@ -9,36 +9,80 @@ output:
   BiocStyle::html_document
 ---
 
+# Introduction
+
+RLHub is the Experiment Hub for the RLSuite toolchain. It contains annotations of R-Loop consensus regions and genomic features directly relevant to R-loops, such as R-loop-forming sequencing (RLFS) and G-or-C skew regions.
+
+All data were generated via the protocol outlined in the [RLBase-data repo](https://github.com/Bishop-Laboratory/RLBase-data). 
 
 # Accessing RLHub Data
 
-RLHub is the Experiment Hub for the RLSuite toolchain. It contains annotations
-of R-Loop consensus regions and genomic features directly relevant to R-loops, 
-such as R-loop-forming sequencing (RLFS) and G-or-C skew regions.
-
-In the below example, we show how one can download this dataset from 
-ExperimentHub.
-
-```{r get-rlhub}
-library(ExperimentHub)
-eh <- ExperimentHub()
-query(eh , "RLHub")
+```{r}
+library(RLHub)
 ```
 
-One can then extract the data for this using
+Data can be conveniently accessed through `ExperimentHub` functions or built-in accessors available through `RLHub`.
 
-```{r download-rlhub}
-rlhub_data <- eh[["EH1"]]
-```
+## The data
 
-The different data types can be accessed with --
+A full manifest of the available data is found here:
 
 ```{r rlhub-types}
-head(availableData(rlhub_data))
+DT::datatable(
+    read.csv(system.file("extdata", "metadata.csv", package = "RLHub")),
+    options = list(
+        scrollX=TRUE,
+        pageLength = 5
+    )
+)
+```
+The **Tags** column list the function names used to access each data set. This method of access is detailed below.
+
+## With built-in functions
+
+In the below example, we show how one can access data using convenient built-in functions. The data accessed is "R-loop-binding proteins discovered from mass-spec studies."
+
+```{r get-rlhub, message=FALSE}
+rlbps <- RLHub::rlbps()
+DT::datatable(rlbps)
 ```
 
-# sessionInfo()
+As noted in the previous section, the function name is simply the value in **Tags** corresponding to the entry for that data set in the `metadata.csv` table . In this example,"rlbps" is the tag corresponding to entry \#5: "R-loop-binding proteins discovered from mass-spec studies." Therefore, the function to access this data is simply `RLHub::rlbps()`.
+
+## With ExperimentHub Objects
+
+```{r, message=FALSE}
+library(ExperimentHub)
+```
+
+In this example, we show how to access RLHub data using the ExperimentHub object.
+
+```{r, message=FALSE}
+eh <- ExperimentHub()
+rlhub <- query(eh, "RLHub")
+rlhub
+```
+
+If we want to obtain the R-loop-binding proteins, for example, we can do so with the ID of that item.
+
+```{r, message=FALSE}
+rlbps <- rlhub[["EH6797"]]
+DT::datatable(rlbps)
+```
+Finally, all package resources may be loaded as a list using `loadResources()`.
+
+```{.r}
+rlhublst <- loadResources(rlhub, package = "RLHub")
+names(rlhublst) <- listResources(rlhub, package = "RLHub")
+```
+
+# Session info
+
+<details>
+<summary>Session info</summary>
 
 ```{r sessionInfo}
 sessionInfo()
 ```
+
+</details>

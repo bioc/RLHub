@@ -3,3 +3,6 @@
 ^RLHub\.Rproj$
 ^LICENSE\.md$
 ^README\.Rmd$
+^\.github$
+^doc$
+^Meta$

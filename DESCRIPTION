@@ -1,26 +1,36 @@
 Package: RLHub
-Title: What the Package Does (One Line, Title Case)
-Version: 0.0.0.9000
+Title: Convenient access to RLBase data-sets
+Version: 0.9.0
 Authors@R: 
-    person(given = "First",
-           family = "Last",
+    person(given = "Henry",
+           family = "Miller",
            role = c("aut", "cre"),
-           email = "first.last@example.com",
-           comment = c(ORCID = "YOUR-ORCID-ID"))
-Description: What the package does (one paragraph).
+           email = "millerh1@uthscsa.edu",
+           comment = c(ORCID = "0000-0003-3756-3918"))
+Description: |
+    RLHub provides a convenient interface to the processed data used with
+    RLSuite. The data is in a processed form and derives from the protocol
+    here: https://github.com/Bishop-Laboratory/RLBase-data. RLHub provides
+    accessor functions for conveniently downloading the loading these data 
+    objects. 
 License: MIT + file LICENSE
 Encoding: UTF-8
-LazyData: true
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.2
+VignetteBuilder: knitr
 Imports: 
-    aws.s3,
-    dplyr,
+    AnnotationHub,
     ExperimentHub,
-    magrittr,
     utils
 biocViews:
     ExperimentData,
     ExperimentHub,
+    ExpressionData,
     ReproducibleResearch,
     SequencingData
+Suggests: 
+    knitr,
+    DT,
+    rmarkdown,
+    testthat,
+    BiocStyle

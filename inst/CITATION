@@ -1,0 +1,18 @@
+pkgVer <- function(pkg) {
+    if (!exists("meta") || is.null(meta)) meta <- packageDescription(pkg)
+    ver <- meta$Version
+    paste0('https://github.com/Bishop-Laboratory/RLHub/', pkg, ' - R package version ', ver)
+}
+
+c(
+    bibentry(bibtype="manual",
+        title = "RLHub: Convenient access to RLBase data-sets",
+        author = personList(
+            as.person("Henry Miller")
+        ),
+        year = format(Sys.Date(), "%Y"),
+        url = "http://www.bioconductor.org/packages/RLHub",
+        note = pkgVer('RLHub'),
+        doi = '10.18129/B9.bioc.RLHub'
+    )
+)
