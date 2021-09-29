@@ -23,6 +23,17 @@ RLHub provides processed data sets for the RLSuite toolchain. It is an `Experime
 
 All data were generated via the protocol outlined in the [RLBase-data repository](https://github.com/Bishop-Laboratory/RLBase-data). 
 
+# Installation
+
+RLHub from Bioconductor can be installed via the following command:
+
+```{.r}
+if (!requireNamespace("BiocManager", quietly = TRUE))
+    install.packages("BiocManager")
+
+BiocManager::install("RLHub")
+```
+
 # Accessing RLHub Data
 
 ```{r}
@@ -81,6 +92,7 @@ If we want to obtain the R-loop-binding proteins, for example, we can do so with
 rlbps <- rlhub[["EH6797"]]
 DT::datatable(rlbps)
 ```
+
 Finally, all package resources may be loaded as a list using `loadResources()`.
 
 ```{.r}
