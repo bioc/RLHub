@@ -1,17 +1,22 @@
 Package: RLHub
 Title: Convenient access to RLBase data-sets
-Version: 0.9.0
-Authors@R: 
+Version: 0.99.0
+Authors@R: c(
     person(given = "Henry",
            family = "Miller",
            role = c("aut", "cre"),
            email = "millerh1@uthscsa.edu",
-           comment = c(ORCID = "0000-0003-3756-3918"))
+           comment = c(ORCID = "0000-0003-3756-3918")),
+    person(given = "Alexander",
+           family = "Bishop",
+           email = "bishopa@uthscsa.edu",
+           comment = c(ORCID = "0000-0002-5742-4387"),
+           role = c("ths", "cph")))
 Description: |
     RLHub provides a convenient interface to the processed data used with
     RLSuite. The data is in a processed form and derives from the protocol
     here: https://github.com/Bishop-Laboratory/RLBase-data. RLHub provides
-    accessor functions for conveniently downloading the loading these data 
+    accessor functions for conveniently downloading and loading these data 
     objects. 
 License: MIT + file LICENSE
 Encoding: UTF-8
@@ -34,3 +39,6 @@ Suggests:
     rmarkdown,
     testthat,
     BiocStyle
+URL: https://github.com/Bishop-Laboratory/RLHub
+BugReports: https://github.com/Bishop-Laboratory/RLHub/issues
+BiocType: ExperimentHub
