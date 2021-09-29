@@ -1,6 +1,6 @@
 Package: RLHub
-Title: Convenient access to RLBase data-sets
-Version: 0.99.0
+Title: An ExperimentHub package for accessing processed RLSuite data sets.
+Version: 0.99.1
 Authors@R: c(
     person(given = "Henry",
            family = "Miller",
@@ -13,11 +13,16 @@ Authors@R: c(
            comment = c(ORCID = "0000-0002-5742-4387"),
            role = c("ths", "cph")))
 Description: |
-    RLHub provides a convenient interface to the processed data used with
-    RLSuite. The data is in a processed form and derives from the protocol
-    here: https://github.com/Bishop-Laboratory/RLBase-data. RLHub provides
-    accessor functions for conveniently downloading and loading these data 
-    objects. 
+    RLHub provides a convenient interface to the processed data provided within
+    RLSuite, a tool-chain for analyzing R-loop-mapping data sets. 
+    The primary purpose of RLHub is to serve the processed data sets 
+    required by the RLSeq R package and the RLBase web service. Additionally, 
+    RLHub provides a stand-alone R interface to these data, benefiting 
+    users who are addressing questions related to R-loop regions (RL-Regions), 
+    R-loop-binding proteins (RLBPs), R-loop co-localizing factors, 
+    and the differences between R-loop-mapping methods. 
+    The full data-generating protocol is found here: 
+    https://github.com/Bishop-Laboratory/RLBase-data.
 License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
