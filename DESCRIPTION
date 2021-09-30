@@ -1,6 +1,6 @@
 Package: RLHub
-Title: An ExperimentHub package for accessing processed RLSuite data sets.
-Version: 0.99.1
+Title: An ExperimentHub package for accessing processed RLSuite data sets
+Version: 0.99.2
 Authors@R: c(
     person(given = "Henry",
            family = "Miller",
@@ -37,7 +37,13 @@ biocViews:
     ExperimentHub,
     ExpressionData,
     ReproducibleResearch,
-    SequencingData
+    SequencingData,
+    Genome,
+    ChIPSeqData,
+    RNASeqData,
+    GEO,
+    PackageTypeData,
+    ENCODE
 Suggests: 
     knitr,
     DT,

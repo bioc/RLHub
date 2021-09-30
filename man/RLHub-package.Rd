@@ -4,91 +4,51 @@
 \name{RLHub-package}
 \alias{RLHub-package}
 \alias{_PACKAGE}
-\alias{RLHub-pacage}
-\alias{annots_full_hg38}
-\alias{annots_full_mm10}
-\alias{annots_primary_hg38}
-\alias{annots_primary_mm10}
-\alias{feat_enrich_rlregions}
-\alias{feat_enrich_samples}
-\alias{fft_model}
-\alias{gene_exp}
-\alias{gs_signal}
-\alias{prep_features}
-\alias{rlbase_samples}
-\alias{rlbps}
-\alias{rlfs_res}
-\alias{rlregions_annot}
-\alias{rlregions_counts}
-\alias{rlregions_meta}
+\alias{RLHub}
 \title{Accessing RLHub data}
 \description{
-RLHub is a convenient access point to the processed datasets available
-within RLBase. In this document, we list the availabl accessor functions
+RLHub provides convenient access point to the processed datasets available
+within RLBase. In this document, we list the available accessor functions
 which streamline access to the data.
 }
 \details{
 The RLHub package provides a useful interface to the data stored within the
 "RLHub" ExperimentHub database. The full manifest of available data is found
-here:
-
-\code{system.file("extdata", "metadata.csv", package = "RLHub")}
+here:\tabular{lll}{
+   Title \tab Accessor \tab Description \cr
+   Primary Genomic Annotations (hg38) \tab \link{annots_primary_hg38} \tab Primary Human genomic annotations curated for use with RLSuite. \cr
+   Primary Genomic Annotations (mm10) \tab \link{annots_primary_mm10} \tab Primary Mouse genomic annotations curated for use with RLSuite. \cr
+   Full Genomic Annotations (hg38) \tab \link{annots_full_hg38} \tab Full Human genomic annotations curated for use with RLSuite. \cr
+   Full Genomic Annotations (mm10) \tab \link{annots_full_mm10} \tab Full Mouse genomic annotations curated for use with RLSuite. \cr
+   R-loop Binding Proteins \tab \link{rlbps} \tab R-loop-binding proteins discovered from mass-spec studies. \cr
+   Gene Expression \tab \link{gene_exp} \tab Gene expression count tables from matched RNA-Seq experiments corresponding to R-loop profiling. The counts, TPM, and VST-transformed counts are provided. \cr
+   Feature Enrichment per Sample \tab \link{feat_enrich_samples} \tab Genomic feature enrichment stats for each peakset in RLBase. \cr
+   Feature Enrichment per RL-Region \tab \link{feat_enrich_rlregions} \tab Genomic feature enrichment stats for the RL-Regions in RLBase. \cr
+   GS-Signal \tab \link{gs_signal} \tab Bin-level read counts for RLBase samples around R-loop sites discovered using long-read SMRF-Seq (gold-standard sites). \cr
+   FFT-Model \tab \link{fft_model} \tab Stacked classifier for deciding whether samples successfully mapped R-loops. \cr
+   Feature-Prep Model \tab \link{prep_features} \tab Model for transforming dataset features prior to classification. \cr
+   RLFS-Test Results \tab \link{rlfs_res} \tab The results from RLFS (R-loop-forming sequences) analysis on all RLBase samples via the RLSeq package. \cr
+   RLRegion Annotations \tab \link{rlregions_annot} \tab R-loop regions (rlregions) derived from S9.6-based and dRNH-based samples ('All' group), annotated with genomic features. \cr
+   RLRegion Metadata \tab \link{rlregions_meta} \tab R-loop regions (rlregions) derived from S9.6-based and dRNH-based samples ('All' group), with descriptive metadata. \cr
+   RLRegion Read Counts \tab \link{rlregions_counts} \tab Read count tables from RLBase samples quantified across the R-loop regions (rlregions) derived from both S9.6-based and dRNH-based samples ('All' group). \cr
+   RLBase Sample Manifest \tab \link{rlbase_samples} \tab The hand-curated manifest of all RLBase samples with descriptive metadata and some sample-level analysis results. \cr
 }
-\examples{
-
-## Access data-sets ##
-
-# Manifest of samples in RLBase
-dat <- rlbase_samples()
-
-# Full hg38 annotations
-dat <- annots_full_hg38()
-
-# Full mm10 annotations
-dat <- annots_full_mm10()
-
-# Primary hg38 annotations
-dat <- annots_primary_hg38()
-
-# Primary mm10 annotations
-dat <- annots_primary_mm10()
-
-# Feature enrichment of RLRegions
-dat <- feat_enrich_rlregions()
-
-# Feature enrichment of RLBase samples
-dat <- feat_enrich_samples()
-
-# FFT-based sample classifier model
-dat <- fft_model()
-
-# Feature transformer for fft_model()
-dat <- prep_features()
-
-# Gene expression results from RLBase
-dat <- gene_exp()
-
-# "Gold-standard" R-loop signal for samples in RLBase
-dat <- gs_signal()
-
-# R-loop binding proteins data
-dat <- rlbps()
-
-# Results of RLFS analysis from RLBase
-dat <- rlfs_res()
-
-# R-loop regions, annotated for hg38 features
-dat <- rlregions_annot()
-
-# R-loop regions, with read counts (as a summarized experiment)
-dat <- rlregions_counts()
-
-# R-loop regions, metadata
-dat <- rlregions_meta()
+}
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://github.com/Bishop-Laboratory/RLHub}
+  \item Report bugs at \url{https://github.com/Bishop-Laboratory/RLHub/issues}
+}
 
 }
 \author{
 \strong{Maintainer}: Henry Miller \email{millerh1@uthscsa.edu} (\href{https://orcid.org/0000-0003-3756-3918}{ORCID})
+
+Other contributors:
+\itemize{
+  \item Alexander Bishop \email{bishopa@uthscsa.edu} (\href{https://orcid.org/0000-0002-5742-4387}{ORCID}) [thesis advisor, copyright holder]
+}
 
 }
 \keyword{internal}
