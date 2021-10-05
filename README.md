@@ -1,4 +1,4 @@
-# RLHub <img src="logo.png" align="right" alt="logo" width="240" style = "border: none; float: right;">
+# RLHub <img src="https://rlbase-data.s3.amazonaws.com/misc/assets/whitebgRLHub+Logo.png" align="right" alt="logo" width="240" style = "border: none; float: right;">
 
 <!-- badges: start -->
 
@@ -15,7 +15,7 @@
 RLHub::rlbps()
 ```
 
-All data sets in RLHub are documented in the package website [reference pages](https://bishop-laboratory.github.io/RLHub/articles/RLHub.html)
+All data sets in RLHub are documented in the package website [reference pages](https://bishop-laboratory.github.io/RLHub/reference/index.html)
 
 ## Installation
 
