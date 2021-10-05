@@ -1,4 +1,4 @@
-# RLHub
+# RLHub <img src="logo.png" align="right" alt="logo" width="240" style = "border: none; float: right;">
 
 <!-- badges: start -->
 
@@ -6,7 +6,29 @@
 
 <!-- badges: end -->
 
+
+# Introduction
+
+*RLHub* (part of [*RLSuite*](https://gccri.bishop-lab.uthscsa.edu/rlsuite/)) provides easy access to the processed R-loop mapping data stored in [RLBase](https://github.com/Bishop-Laboratory/RLBase). It is an *ExperimentHub* package with built-in accessors that streamline the data retrieval process. For example, to access data about R-loop binding proteins (RLBPs), simply execute the following:
+
+```r
+RLHub::rlbps()
+```
+
+All data sets in RLHub are documented in the package website [reference pages](https://bishop-laboratory.github.io/RLHub/articles/RLHub.html)
+
 ## Installation
+
+### From Bioconductor
+
+```r
+if (!requireNamespace("BiocManager", quietly = TRUE))
+    install.packages("BiocManager")
+
+BiocManager::install("RLHub")
+```
+
+### From GitHub
 
 1. Update to the `devel` version of bioconductor. 
 
@@ -22,4 +44,9 @@ remotes::install_github("Bishop-Laboratory/RLHub")
 
 ## Usage
 
-The full vignette can be found [here](https://rlbase-data.s3.amazonaws.com/misc/rlhub_vignette.html).
+For full documentation and data descriptions, please see the [getting started guide](https://bishop-laboratory.github.io/RLHub/articles/RLHub.html).
+
+## Bugs and Issues
+
+*RLHub* is a brand-new package and there may be bugs and issues which arise. If you encounter and issues or
+unexpected behavior, please [open an issue](https://github.com/Bishop-Laboratory/RLHub/issues).

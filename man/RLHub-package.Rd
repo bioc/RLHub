@@ -43,7 +43,7 @@ Useful links:
 
 }
 \author{
-\strong{Maintainer}: Henry Miller \email{millerh1@uthscsa.edu} (\href{https://orcid.org/0000-0003-3756-3918}{ORCID})
+\strong{Maintainer}: Henry Miller \email{millerh1@uthscsa.edu} (\href{https://orcid.org/0000-0003-3756-3918}{ORCID}) [copyright holder]
 
 Other contributors:
 \itemize{

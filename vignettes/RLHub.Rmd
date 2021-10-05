@@ -19,6 +19,8 @@ vignette: >
 
 # Introduction
 
+<img src="https://rlbase-data.s3.amazonaws.com/misc/assets/whitebgRLHub+Logo.png" align="right" alt="logo" width="240" style = "border: none; float: right;">
+
 RLHub ("R-Loop Hub") provides processed data sets for the RLSuite toolchain. It is an `ExperimentHub` package containing annotations of R-Loop consensus regions, genomic features directly relevant to R-loops, such as R-loop-forming sequences (RLFS), G-or-C skew regions, and other data of relevance to RLSuite.
 
 All data were generated via the protocol in the [RLBase-data repository](https://github.com/Bishop-Laboratory/RLBase-data).

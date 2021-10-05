@@ -6,9 +6,10 @@ pkgVer <- function(pkg) {
 
 c(
     bibentry(bibtype="manual",
-        title = "RLHub: Convenient access to RLBase data-sets",
+        title = "RLHub: Access processed R-loop data sets",
         author = personList(
-            as.person("Henry Miller")
+            as.person("Henry E. Miller"),
+            as.person("Alexander J. R. Bishop")
         ),
         year = format(Sys.Date(), "%Y"),
         url = "http://www.bioconductor.org/packages/RLHub",

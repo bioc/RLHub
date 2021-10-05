@@ -1,10 +1,10 @@
 Package: RLHub
 Title: An ExperimentHub package for accessing processed RLSuite data sets
-Version: 0.99.2
+Version: 0.99.3
 Authors@R: c(
     person(given = "Henry",
            family = "Miller",
-           role = c("aut", "cre"),
+           role = c("aut", "cre", "cph"),
            email = "millerh1@uthscsa.edu",
            comment = c(ORCID = "0000-0003-3756-3918")),
     person(given = "Alexander",
@@ -50,6 +50,6 @@ Suggests:
     rmarkdown,
     testthat,
     BiocStyle
-URL: https://github.com/Bishop-Laboratory/RLHub
+URL: https://github.com/Bishop-Laboratory/RLHub, https://bishop-laboratory.github.io/RLHub/
 BugReports: https://github.com/Bishop-Laboratory/RLHub/issues
 BiocType: ExperimentHub
