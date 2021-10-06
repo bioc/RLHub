@@ -75,7 +75,17 @@ Column description:
 \item \code{discarded} - A logical indicating whether this sample was discarded during model building for a mismatch with its "label" (see \link{models}).
 \item \code{numPeaks} - The number of peaks called for this sample.
 \item \code{expsamples} - The IDs of any corresponding expression samples.
-\item \code{exp_matchCond} - The meta data used to match this sample to any corresponding expression samples (if applicable)
+\item \code{exp_matchCond} - The meta data used to match this sample to any corresponding expression samples (if applicable).
+\itemize{
+\item \strong{Method}: Some R-loop mapping studies also had matched RNA-Seq data. In these cases,
+they were also recorded with the same metadata (where applicable) as R-loop mapping samples. To match expression and R-loop samples,
+the \code{study}, \code{tissue}, \code{genotype}, and \code{other} columns were compared iteratively for each R-loop sample. If all four
+were a match with at least one expression samples, then those four columns would be assigned as the \code{exp_matchCond}. If only
+three were available, then they would become the \code{exp_matchCond}. To see the order in which columns were checked
+for possible matches, view the \code{buildExpression.R} script in the
+\href{https://github.com/Bishop-Laboratory/RLBase-data/blob/main/scripts/buildExpression.R#L25-L32}{RLBase-data repo}.
+See also the section on \code{corr(R/PVal/PAdj)} column in \link{rlregions}.
+}
 \item \code{coverage_s3} - The location of the coverage tracks (\code{.bw}) in the AWS S3 bucket for RLBase data ('s3://rlbase_data/').
 \item \code{peaks_s3} - Same as above for peak files (\code{.broadPeak})
 \item \code{fastq_stats_s3} - Same as above for fastq QC statistics data (\code{.json}).

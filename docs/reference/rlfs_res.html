@@ -123,8 +123,8 @@ in RLBase." />
     </div>
 
     <div class="ref-description">
-    <p>A list containing the results of R-loop-forming sequences analysis (<code><a href='https://rdrr.io/pkg/RLSeq/man/analyzeRLFS.html'>RLSeq::analyzeRLFS()</a></code>) and
-subsequent sample classification <code><a href='https://rdrr.io/pkg/RLSeq/man/predictCondition.html'>RLSeq::predictCondition()</a></code> as "POS"
+    <p>A list containing the results of R-loop-forming sequences analysis (<code><a href='https://bishop-laboratory.github.io/RLSeq/reference/analyzeRLFS.html'>RLSeq::analyzeRLFS()</a></code>) and
+subsequent sample classification <code><a href='https://bishop-laboratory.github.io/RLSeq/reference/predictCondition.html'>RLSeq::predictCondition()</a></code> as "POS"
 (robustly maps R-loops) or "NEG" (poorly maps R-loops) with all samples
 in RLBase.</p>
     </div>
@@ -153,10 +153,10 @@ in RLBase.</p>
 of the RLBase data prep protocol can be found <a href='https://github.com/Bishop-Laboratory/RLBase-data#generate-datasets'>here</a>.
 Briefly, genomes available from UCSC were downloaded and analyzed with <code>QmRLFS-finder.py</code>
 on default settings. The resulting RLFS ranges were converted to <code>.bed</code> format.</p>
-<p>RLFS analysis (via <code><a href='https://rdrr.io/pkg/RLSeq/man/analyzeRLFS.html'>RLSeq::analyzeRLFS()</a></code>) implements permutation testing to calculate
+<p>RLFS analysis (via <code><a href='https://bishop-laboratory.github.io/RLSeq/reference/analyzeRLFS.html'>RLSeq::analyzeRLFS()</a></code>) implements permutation testing to calculate
 the enrichment of a query R-loop mapping peakset within the relevant RLFS ranges. This analysis produces
 a p value and a Z-score distribution which are subsequently analyzed with
-<code><a href='https://rdrr.io/pkg/RLSeq/man/predictCondition.html'>RLSeq::predictCondition()</a></code> (see <a href='fft_model.html'>models</a>), yielding a quality prediction of "POS"
+<code><a href='https://bishop-laboratory.github.io/RLSeq/reference/predictCondition.html'>RLSeq::predictCondition()</a></code> (see <a href='fft_model.html'>models</a>), yielding a quality prediction of "POS"
 (robustly maps R-loops) or "NEG" (poorly maps R-loops).</p>
 <p>This approach was applied to every sample in RLBase (see <a href='rlbase_samples.html'>rlbase_samples</a>) to yield rlfs_res.</p>
 
@@ -177,7 +177,7 @@ a p value and a Z-score distribution which are subsequently analyzed with
 </ul></li>
 <li><p><code>rlfsPred</code> - A <code>list</code> with this structure:</p><ul>
 <li><p><code>Features</code></p><ul>
-<li><p>A <code>tbl</code> containing the raw and transformed values of features used in <code><a href='https://rdrr.io/pkg/RLSeq/man/predictCondition.html'>RLSeq::predictCondition()</a></code>.</p></li>
+<li><p>A <code>tbl</code> containing the raw and transformed values of features used in <code><a href='https://bishop-laboratory.github.io/RLSeq/reference/predictCondition.html'>RLSeq::predictCondition()</a></code>.</p></li>
 </ul></li>
 <li><p><code>Criteria</code></p><ul>
 <li><p>A <code>list</code> containing the results of analyzing the four criteria which must all be <code>TRUE</code> for a prediction of "POS":</p><ul>
@@ -196,10 +196,10 @@ a p value and a Z-score distribution which are subsequently analyzed with
 
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'>
+    <pre class="examples">
 <span class='va'>rlfsRes</span> <span class='op'>&lt;-</span> <span class='fu'>rlfs_res</span><span class='op'>(</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>see ?RLHub and browseVignettes('RLHub') for documentation</span></div><div class='output co'>#&gt; <span class='message'>loading from cache</span></div><div class='input'>
-</div></pre>
+
+</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

@@ -123,8 +123,8 @@ These models are used with RLSeq::predictCondition()." />
 
     <div class="ref-description">
     <p>Models used for predicting sample label ("POS": robustly maps R-loops; "NEG": poorly maps R-loops )
-based on R-loop-forming sequences analysis (<code><a href='https://rdrr.io/pkg/RLSeq/man/analyzeRLFS.html'>RLSeq::analyzeRLFS()</a></code>).
-These models are used with <code><a href='https://rdrr.io/pkg/RLSeq/man/predictCondition.html'>RLSeq::predictCondition()</a></code>.</p>
+based on R-loop-forming sequences analysis (<code><a href='https://bishop-laboratory.github.io/RLSeq/reference/analyzeRLFS.html'>RLSeq::analyzeRLFS()</a></code>).
+These models are used with <code><a href='https://bishop-laboratory.github.io/RLSeq/reference/predictCondition.html'>RLSeq::predictCondition()</a></code>.</p>
     </div>
 
     <pre class="usage"><span class='fu'>fft_model</span><span class='op'>(</span>quiet <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
@@ -151,7 +151,7 @@ These models are used with <code><a href='https://rdrr.io/pkg/RLSeq/man/predictC
 
 <p>The models were developed as part of a semi-automated online learning scheme
 found in the RLBase-data protocol <a href='https://github.com/Bishop-Laboratory/RLBase-data#build-discriminator-model'>here</a>.
-Briefly, R-loop-forming sequences (RLFS) analysis was performed using <code><a href='https://rdrr.io/pkg/RLSeq/man/analyzeRLFS.html'>RLSeq::analyzeRLFS()</a></code>
+Briefly, R-loop-forming sequences (RLFS) analysis was performed using <code><a href='https://bishop-laboratory.github.io/RLSeq/reference/analyzeRLFS.html'>RLSeq::analyzeRLFS()</a></code>
 for every sample peakset in RLBase (see <a href='rlfs_res.html'>rlfs_res</a> for full results). The
 samples were then manually inspected and any which starkly differed from
 their label were removed. Out of 693 possible samples, 135 were excluded
@@ -194,16 +194,16 @@ report <a href='https://rlbase-data.s3.amazonaws.com/misc/model/FFT-classifier.h
 <h3 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Usage</h3>
 
 
-<p>These models are used internally by <code><a href='https://rdrr.io/pkg/RLSeq/man/predictCondition.html'>RLSeq::predictCondition()</a></code>.</p>
+<p>These models are used internally by <code><a href='https://bishop-laboratory.github.io/RLSeq/reference/predictCondition.html'>RLSeq::predictCondition()</a></code>.</p>
 
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'>
+    <pre class="examples">
 <span class='va'>fftModel</span> <span class='op'>&lt;-</span> <span class='fu'>fft_model</span><span class='op'>(</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>see ?RLHub and browseVignettes('RLHub') for documentation</span></div><div class='output co'>#&gt; <span class='message'>loading from cache</span></div><div class='input'>
+
 <span class='va'>pfModel</span> <span class='op'>&lt;-</span> <span class='fu'>prep_features</span><span class='op'>(</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>see ?RLHub and browseVignettes('RLHub') for documentation</span></div><div class='output co'>#&gt; <span class='message'>loading from cache</span></div><div class='input'>
-</div></pre>
+
+</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

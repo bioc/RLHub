@@ -74,7 +74,7 @@
 #' * `location` - The location of the RL Region. This column follows the pattern "chrom:start-stop:strand"
 #' * `is_rlfs` - Logical indicating whether the RL region overlaps with an R-loop forming sequence. 
 #' * `source` - Indicates whether the RL region was discovered from catalytically-dead RNaseH1-based mapping (`dRNH`), S9.6-based mapping (`S96`), or both (`dRNH S96`).
-#' * `confidence_level` - The percent of samples in which this range was found. 
+#' * `conservation_score` - The percent of samples in which this range was found (calculated separately for `dRNH` and `S96` sites and then averaged together for sites from `dRNH S96` source).
 #' * `medSignalVal` - The median broadPeak "signalVal" (see [UCSC specification](https://genome.ucsc.edu/FAQ/FAQformat.html#format13)) of sample peaks in the RL region.
 #' * `medPVal` - The median broadPeak -log10 pval (see [UCSC specification](https://genome.ucsc.edu/FAQ/FAQformat.html#format13)) of sample peaks in the RL region.
 #' * `medQVal` - The median broadPeak -log10 qval (adjusted pval) (see [UCSC specification](https://genome.ucsc.edu/FAQ/FAQformat.html#format13)) of sample peaks in the RL region.
@@ -91,6 +91,39 @@
 #' * `allGenes` - The Gene Symbols of all genes overlapping with this RL Region. 
 #' * `mainGenes` - The Gene Symbols of all genes (which appear in pathway databases) overlapping with this RL Region. 
 #' * `is_repeat` - A logical indicating whether the RL Region occurs in a repetitive genomic region as determined by repeat masker (and also peri-centromeric regions were included.)
+#' * `confidence_score` - A confidence score for ranking RL Regions.  
+#'   - **Method**: 
+#'     * **Summary**: `confidence_score` is the geometric mean of features
+#'      relevant to RL Region robustness with a penalty for 
+#'      regions found only in `dRNH` and `S96` alone.
+#'     * **Calculation**: The `confidence_score` is calculated as following: `C = m * (cons * ns * mq * ms)^(1/4)`; where
+#'     `m` is a penalty (of `1.25` weight) for RL Regions not found in both `S96` and `dRNH` sets. `cons` is
+#'     the standardized log2 transform of the `conservation score`. `ns` is the standardization of the
+#'     `nSamples` column. `mq` is the standardized log2 transform of the `medQVal` column. 
+#'     `ms` is the standardized log2 transform of the `medSignalVal` column. 
+#' * `corr(R/PVal/PAdj)` - Results of correlation analysis between R-loop abundance and 
+#' expression within each RL Region. (see also [gene_exp])
+#'   - **Method**: R-loop alignment files were summarized within RL Regions to 
+#'     make a count matrix, which was then `log2(tpm + 1)` normalized. Then, the expression
+#'     `log2(tpm + 1)` matrix was summarized to the RL Regions level as the mean
+#'     expression of genes overlapping with the R-loop. Then, R-loop and 
+#'     expression samples were paired based on the study of origin, sample
+#'      condition, and other factors (73 sample pairs in total)
+#'     (see the description of the `exp_matchCond` column in [rlbase_samples]).
+#'     Within each pairing, there were some many-to-many mappings between R-loop
+#'     and expression samples, due to multiple samples having the same `exp_matchCond`.
+#'     In these cases, RL region expression and R-loop abundance was summarized
+#'     as the mean across redundant samples. Finally, the Spearman correlation
+#'     between R-loop abundance and expression was calculated within each 
+#'     R-loop region (see [cor.test]), yielding `Rho` and the `p.value`.
+#'     See also the relevant processing script (`buildExpression.R`) from the
+#'      [RLBase-data repo](https://github.com/Bishop-Laboratory/RLBase-data/blob/main/scripts/buildExpression.R#L145-L219).
+#'   - `corrR` -  Spearman's Rho for the correlation between expression and R-loop
+#'   abundance within each RL Region (see [gene_exp]). 
+#'   - `corrPVal` - The pvalue from running `cor.test` as described above.
+#'   - `corrPAdj` - The result of multiple testing correction on `corrPVal`
+#'   using `p.adjust` with default arguments. (See also [p.adjust])
+#' 
 #' 
 #' ## RL Regions anno - [rlregions_annot]
 #' 

@@ -92,7 +92,7 @@ Column description:
 \item \code{location} - The location of the RL Region. This column follows the pattern "chrom:start-stop:strand"
 \item \code{is_rlfs} - Logical indicating whether the RL region overlaps with an R-loop forming sequence.
 \item \code{source} - Indicates whether the RL region was discovered from catalytically-dead RNaseH1-based mapping (\code{dRNH}), S9.6-based mapping (\code{S96}), or both (\verb{dRNH S96}).
-\item \code{confidence_level} - The percent of samples in which this range was found.
+\item \code{conservation_score} - The percent of samples in which this range was found (calculated separately for \code{dRNH} and \code{S96} sites and then averaged together for sites from \verb{dRNH S96} source).
 \item \code{medSignalVal} - The median broadPeak "signalVal" (see \href{https://genome.ucsc.edu/FAQ/FAQformat.html#format13}{UCSC specification}) of sample peaks in the RL region.
 \item \code{medPVal} - The median broadPeak -log10 pval (see \href{https://genome.ucsc.edu/FAQ/FAQformat.html#format13}{UCSC specification}) of sample peaks in the RL region.
 \item \code{medQVal} - The median broadPeak -log10 qval (adjusted pval) (see \href{https://genome.ucsc.edu/FAQ/FAQformat.html#format13}{UCSC specification}) of sample peaks in the RL region.
@@ -109,6 +109,44 @@ Column description:
 \item \code{allGenes} - The Gene Symbols of all genes overlapping with this RL Region.
 \item \code{mainGenes} - The Gene Symbols of all genes (which appear in pathway databases) overlapping with this RL Region.
 \item \code{is_repeat} - A logical indicating whether the RL Region occurs in a repetitive genomic region as determined by repeat masker (and also peri-centromeric regions were included.)
+\item \code{confidence_score} - A confidence score for ranking RL Regions.
+\itemize{
+\item \strong{Method}:
+\itemize{
+\item \strong{Summary}: \code{confidence_score} is the geometric mean of features
+relevant to RL Region robustness with a penalty for
+regions found only in \code{dRNH} and \code{S96} alone.
+\item \strong{Calculation}: The \code{confidence_score} is calculated as following: \code{C = m * (cons * ns * mq * ms)^(1/4)}; where
+\code{m} is a penalty (of \code{1.25} weight) for RL Regions not found in both \code{S96} and \code{dRNH} sets. \code{cons} is
+the standardized log2 transform of the \verb{conservation score}. \code{ns} is the standardization of the
+\code{nSamples} column. \code{mq} is the standardized log2 transform of the \code{medQVal} column.
+\code{ms} is the standardized log2 transform of the \code{medSignalVal} column.
+}
+}
+\item \code{corr(R/PVal/PAdj)} - Results of correlation analysis between R-loop abundance and
+expression within each RL Region. (see also \link{gene_exp})
+\itemize{
+\item \strong{Method}: R-loop alignment files were summarized within RL Regions to
+make a count matrix, which was then \code{log2(tpm + 1)} normalized. Then, the expression
+\code{log2(tpm + 1)} matrix was summarized to the RL Regions level as the mean
+expression of genes overlapping with the R-loop. Then, R-loop and
+expression samples were paired based on the study of origin, sample
+condition, and other factors (73 sample pairs in total)
+(see the description of the \code{exp_matchCond} column in \link{rlbase_samples}).
+Within each pairing, there were some many-to-many mappings between R-loop
+and expression samples, due to multiple samples having the same \code{exp_matchCond}.
+In these cases, RL region expression and R-loop abundance was summarized
+as the mean across redundant samples. Finally, the Spearman correlation
+between R-loop abundance and expression was calculated within each
+R-loop region (see \link{cor.test}), yielding \code{Rho} and the \code{p.value}.
+See also the relevant processing script (\code{buildExpression.R}) from the
+\href{https://github.com/Bishop-Laboratory/RLBase-data/blob/main/scripts/buildExpression.R#L145-L219}{RLBase-data repo}.
+\item \code{corrR} -  Spearman's Rho for the correlation between expression and R-loop
+abundance within each RL Region (see \link{gene_exp}).
+\item \code{corrPVal} - The pvalue from running \code{cor.test} as described above.
+\item \code{corrPAdj} - The result of multiple testing correction on \code{corrPVal}
+using \code{p.adjust} with default arguments. (See also \link{p.adjust})
+}
 }
 }
 

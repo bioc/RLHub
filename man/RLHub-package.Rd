@@ -38,6 +38,7 @@ here:\tabular{lll}{
 Useful links:
 \itemize{
   \item \url{https://github.com/Bishop-Laboratory/RLHub}
+  \item \url{https://bishop-laboratory.github.io/RLHub/}
   \item Report bugs at \url{https://github.com/Bishop-Laboratory/RLHub/issues}
 }
 

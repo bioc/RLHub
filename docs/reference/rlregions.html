@@ -216,7 +216,7 @@ sample in RLBase (<a href='rlbase_samples.html'>rlbase_samples</a>) within each 
 <li><p><code>location</code> - The location of the RL Region. This column follows the pattern "chrom:start-stop:strand"</p></li>
 <li><p><code>is_rlfs</code> - Logical indicating whether the RL region overlaps with an R-loop forming sequence.</p></li>
 <li><p><code>source</code> - Indicates whether the RL region was discovered from catalytically-dead RNaseH1-based mapping (<code>dRNH</code>), S9.6-based mapping (<code>S96</code>), or both (<code>dRNH S96</code>).</p></li>
-<li><p><code>confidence_level</code> - The percent of samples in which this range was found.</p></li>
+<li><p><code>conservation_score</code> - The percent of samples in which this range was found (calculated separately for <code>dRNH</code> and <code>S96</code> sites and then averaged together for sites from <code>dRNH S96</code> source).</p></li>
 <li><p><code>medSignalVal</code> - The median broadPeak "signalVal" (see <a href='https://genome.ucsc.edu/FAQ/FAQformat.html#format13'>UCSC specification</a>) of sample peaks in the RL region.</p></li>
 <li><p><code>medPVal</code> - The median broadPeak -log10 pval (see <a href='https://genome.ucsc.edu/FAQ/FAQformat.html#format13'>UCSC specification</a>) of sample peaks in the RL region.</p></li>
 <li><p><code>medQVal</code> - The median broadPeak -log10 qval (adjusted pval) (see <a href='https://genome.ucsc.edu/FAQ/FAQformat.html#format13'>UCSC specification</a>) of sample peaks in the RL region.</p></li>
@@ -228,11 +228,46 @@ sample in RLBase (<a href='rlbase_samples.html'>rlbase_samples</a>) within each 
 <li><p><code>nTissues</code> - The number of different tissues in which this RL region was found.</p></li>
 <li><p><code>ip_types</code> - The "IP types" (S9.6, dRNH, or None) in which this RL Region was found.</p></li>
 <li><p><code>nIPType</code> - The number of different "IP types" in which this RL region was found.</p></li>
-<li><p><code>pct_case</code> - The percentage of samples which overlapped with this RL region that were predicted "POS" by <code><a href='https://rdrr.io/pkg/RLSeq/man/predictCondition.html'>RLSeq::predictCondition()</a></code>.</p></li>
+<li><p><code>pct_case</code> - The percentage of samples which overlapped with this RL region that were predicted "POS" by <code><a href='https://bishop-laboratory.github.io/RLSeq/reference/predictCondition.html'>RLSeq::predictCondition()</a></code>.</p></li>
 <li><p><code>geneIDs</code> - The IDs of all genes overlapping with this RL Region.</p></li>
 <li><p><code>allGenes</code> - The Gene Symbols of all genes overlapping with this RL Region.</p></li>
 <li><p><code>mainGenes</code> - The Gene Symbols of all genes (which appear in pathway databases) overlapping with this RL Region.</p></li>
 <li><p><code>is_repeat</code> - A logical indicating whether the RL Region occurs in a repetitive genomic region as determined by repeat masker (and also peri-centromeric regions were included.)</p></li>
+<li><p><code>confidence_score</code> - A confidence score for ranking RL Regions.</p><ul>
+<li><p><strong>Method</strong>:</p><ul>
+<li><p><strong>Summary</strong>: <code>confidence_score</code> is the geometric mean of features
+relevant to RL Region robustness with a penalty for
+regions found only in <code>dRNH</code> and <code>S96</code> alone.</p></li>
+<li><p><strong>Calculation</strong>: The <code>confidence_score</code> is calculated as following: <code>C = m * (cons * ns * mq * ms)^(1/4)</code>; where
+<code>m</code> is a penalty (of <code>1.25</code> weight) for RL Regions not found in both <code>S96</code> and <code>dRNH</code> sets. <code>cons</code> is
+the standardized log2 transform of the <code>conservation score</code>. <code>ns</code> is the standardization of the
+<code>nSamples</code> column. <code>mq</code> is the standardized log2 transform of the <code>medQVal</code> column.
+<code>ms</code> is the standardized log2 transform of the <code>medSignalVal</code> column.</p></li>
+</ul></li>
+</ul></li>
+<li><p><code>corr(R/PVal/PAdj)</code> - Results of correlation analysis between R-loop abundance and
+expression within each RL Region. (see also <a href='gene_exp.html'>gene_exp</a>)</p><ul>
+<li><p><strong>Method</strong>: R-loop alignment files were summarized within RL Regions to
+make a count matrix, which was then <code><a href='https://rdrr.io/r/base/Log.html'>log2(tpm + 1)</a></code> normalized. Then, the expression
+<code><a href='https://rdrr.io/r/base/Log.html'>log2(tpm + 1)</a></code> matrix was summarized to the RL Regions level as the mean
+expression of genes overlapping with the R-loop. Then, R-loop and
+expression samples were paired based on the study of origin, sample
+condition, and other factors (73 sample pairs in total)
+(see the description of the <code>exp_matchCond</code> column in <a href='rlbase_samples.html'>rlbase_samples</a>).
+Within each pairing, there were some many-to-many mappings between R-loop
+and expression samples, due to multiple samples having the same <code>exp_matchCond</code>.
+In these cases, RL region expression and R-loop abundance was summarized
+as the mean across redundant samples. Finally, the Spearman correlation
+between R-loop abundance and expression was calculated within each
+R-loop region (see <a href='https://rdrr.io/r/stats/cor.test.html'>cor.test</a>), yielding <code>Rho</code> and the <code>p.value</code>.
+See also the relevant processing script (<code>buildExpression.R</code>) from the
+<a href='https://github.com/Bishop-Laboratory/RLBase-data/blob/main/scripts/buildExpression.R#L145-L219'>RLBase-data repo</a>.</p></li>
+<li><p><code>corrR</code> -  Spearman's Rho for the correlation between expression and R-loop
+abundance within each RL Region (see <a href='gene_exp.html'>gene_exp</a>).</p></li>
+<li><p><code>corrPVal</code> - The pvalue from running <code>cor.test</code> as described above.</p></li>
+<li><p><code>corrPAdj</code> - The result of multiple testing correction on <code>corrPVal</code>
+using <code>p.adjust</code> with default arguments. (See also <a href='https://rdrr.io/r/stats/p.adjust.html'>p.adjust</a>)</p></li>
+</ul></li>
 </ul>
 
 
@@ -282,7 +317,7 @@ names follow the convention "DataBase__Type__ID" (see also <a href='annots_prima
 <li><p><code>label</code> - The label provided by the data submitters ("POS" or "NEG")</p></li>
 <li><p><code>strand_specific</code> - A logical indicating whether the data is stranded or not.</p></li>
 <li><p><code>paired_end</code> - A logical indicating whether the data is paired-end or not.</p></li>
-<li><p><code>prediction</code> - The predicted label from <code><a href='https://rdrr.io/pkg/RLSeq/man/predictCondition.html'>RLSeq::predictCondition()</a></code>. Can be "POS" or "NEG".</p></li>
+<li><p><code>prediction</code> - The predicted label from <code><a href='https://bishop-laboratory.github.io/RLSeq/reference/predictCondition.html'>RLSeq::predictCondition()</a></code>. Can be "POS" or "NEG".</p></li>
 <li><p><code>discarded</code> - A logical indicating whether the sample was discarded during model building due to a mismatch with its label.</p></li>
 <li><p><code>numPeaks</code> - The number of peaks called from this sample.</p></li>
 <li><p><code>bam</code> - The relative path of the bam file for this sample.</p></li>
@@ -292,14 +327,14 @@ names follow the convention "DataBase__Type__ID" (see also <a href='annots_prima
 
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'>
+    <pre class="examples">
 <span class='va'>rlregions</span> <span class='op'>&lt;-</span> <span class='fu'>rlregions_meta</span><span class='op'>(</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>see ?RLHub and browseVignettes('RLHub') for documentation</span></div><div class='output co'>#&gt; <span class='message'>loading from cache</span></div><div class='input'>
+
 <span class='va'>rlregionsAnno</span> <span class='op'>&lt;-</span> <span class='fu'>rlregions_annot</span><span class='op'>(</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>see ?RLHub and browseVignettes('RLHub') for documentation</span></div><div class='output co'>#&gt; <span class='message'>loading from cache</span></div><div class='input'>
+
 <span class='va'>rlregionsCounts</span> <span class='op'>&lt;-</span> <span class='fu'>rlregions_counts</span><span class='op'>(</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>see ?RLHub and browseVignettes('RLHub') for documentation</span></div><div class='output co'>#&gt; <span class='message'>loading from cache</span></div><div class='input'>
-</div></pre>
+
+</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
