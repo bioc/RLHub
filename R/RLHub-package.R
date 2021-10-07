@@ -3,7 +3,7 @@
 #' RLHub provides convenient access point to the processed datasets available
 #' within RLBase. In this document, we list the available accessor functions
 #' which streamline access to the data.
-#' 
+#'
 #' The RLHub package provides a useful interface to the data stored within the
 #' "RLHub" ExperimentHub database. The full manifest of available data is found
 #' here:
@@ -26,8 +26,8 @@
 #' |RLRegion Metadata                  |[rlregions_meta]        |R-loop regions (rlregions) derived from S9.6-based and dRNH-based samples ('All' group), with descriptive metadata.                                        |
 #' |RLRegion Read Counts               |[rlregions_counts]      |Read count tables from RLBase samples quantified across the R-loop regions (rlregions) derived from both S9.6-based and dRNH-based samples ('All' group).  |
 #' |RLBase Sample Manifest             |[rlbase_samples]        |The hand-curated manifest of all RLBase samples with descriptive metadata and some sample-level analysis results.                                          |
-#' 
-#' 
+#'
+#'
 #' @aliases RLHub-package RLHub
 #' @import ExperimentHub
 #' @keywords internal

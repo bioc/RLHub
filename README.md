@@ -2,7 +2,7 @@
 
 <!-- badges: start -->
 
-[![BiocCheck](https://github.com/Bishop-Laboratory/RLHub/workflows/BiocCheck/badge.svg)](https://github.com/Bishop-Laboratory/RLHub/actions) [![BioC status](http://www.bioconductor.org/shields/build/release/bioc/RLHub.svg)](https://bioconductor.org/checkResults/release/bioc-LATEST/RLHub)
+[![BiocCheck](https://github.com/Bishop-Laboratory/RLHub/workflows/BiocCheck/badge.svg)](https://github.com/Bishop-Laboratory/RLHub/actions) [![Codecov test coverage](https://codecov.io/gh/Bishop-Laboratory/RLHub/branch/main/graph/badge.svg)](https://codecov.io/gh/Bishop-Laboratory/RLHub?branch=main) [![BioC status](http://www.bioconductor.org/shields/build/release/bioc/RLHub.svg)](https://bioconductor.org/checkResults/release/bioc-LATEST/RLHub)
 
 <!-- badges: end -->
 

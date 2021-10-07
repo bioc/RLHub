@@ -81,5 +81,4 @@ Each \code{list} item is itself a \code{list} comprising the following:
 \examples{
 
 rlfsRes <- rlfs_res()
-
 }

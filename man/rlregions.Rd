@@ -212,5 +212,4 @@ rlregions <- rlregions_meta()
 rlregionsAnno <- rlregions_annot()
 
 rlregionsCounts <- rlregions_counts()
-
 }

@@ -43,6 +43,7 @@ biocViews:
     RNASeqData,
     GEO,
     PackageTypeData,
+    DNASeqData,
     ENCODE
 Suggests: 
     knitr,

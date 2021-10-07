@@ -71,5 +71,4 @@ Columns:
 \examples{
 
 rlbpsData <- rlbps()
-
 }

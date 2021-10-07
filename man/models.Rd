@@ -80,5 +80,4 @@ These models are used internally by \code{\link[RLSeq:predictCondition]{RLSeq::p
 fftModel <- fft_model()
 
 pfModel <- prep_features()
-
 }

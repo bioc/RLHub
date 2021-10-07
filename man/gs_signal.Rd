@@ -57,5 +57,4 @@ Column desc:
 \examples{
 
 gss <- gs_signal()
-
 }

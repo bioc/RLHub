@@ -48,5 +48,4 @@ The processing steps are described in the \href{https://github.com/Bishop-Labora
 \examples{
 
 geneExp <- gene_exp()
-
 }

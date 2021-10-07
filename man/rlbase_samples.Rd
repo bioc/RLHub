@@ -99,5 +99,4 @@ See also the section on \code{corr(R/PVal/PAdj)} column in \link{rlregions}.
 \examples{
 
 rlsamples <- rlbase_samples()
-
 }
