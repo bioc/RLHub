@@ -1,4 +1,4 @@
-# RLHub 0.99.5
+# RLHub 0.99.6
 
 ## Package
 
