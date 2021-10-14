@@ -1,0 +1,7 @@
+template:
+  params:
+    bootswatch: flatly
+
+home:
+  title: RLHub
+  description: An ExperimentHub for accessing processed RLBase datasets

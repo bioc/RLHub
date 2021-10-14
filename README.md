@@ -9,13 +9,13 @@
 
 # Introduction
 
-*RLHub* (part of [*RLSuite*](https://gccri.bishop-lab.uthscsa.edu/rlsuite/)) provides easy access to the processed R-loop mapping data stored in [RLBase](https://github.com/Bishop-Laboratory/RLBase). It is an *ExperimentHub* package with built-in accessors that streamline the data retrieval process. For example, to access data about R-loop binding proteins (RLBPs), simply execute the following:
+*RLHub* (part of [*RLSuite*](https://gccri.bishop-lab.uthscsa.edu/rlsuite/)) provides easy access to the processed R-loop mapping data stored in [RLBase](https://gccri.bishop-lab.uthscsa.edu/rlbase/). It is an *ExperimentHub* package with built-in accessors that streamline the data retrieval process. For example, to access data about R-loop binding proteins (RLBPs), simply execute the following:
 
 ```r
 RLHub::rlbps()
 ```
 
-All data sets in RLHub are documented in the package website [reference pages](https://bishop-laboratory.github.io/RLHub/reference/index.html)
+All data sets in RLHub are documented in the package website [reference pages](https://bishop-laboratory.github.io/RLHub/reference/index.html).
 
 ## Installation
 
