@@ -1,6 +1,6 @@
 Package: RLHub
 Title: An ExperimentHub package for accessing processed RLSuite data sets
-Version: 1.9.0
+Version: 1.9.1
 Authors@R: c(
     person(given = "Henry",
            family = "Miller",
@@ -54,3 +54,4 @@ Suggests:
 URL: https://github.com/Bishop-Laboratory/RLHub, https://bishop-laboratory.github.io/RLHub/
 BugReports: https://github.com/Bishop-Laboratory/RLHub/issues
 BiocType: ExperimentHub
+PackageStatus: Deprecated
