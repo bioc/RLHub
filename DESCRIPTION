@@ -1,6 +1,6 @@
 Package: RLHub
 Title: An ExperimentHub package for accessing processed RLSuite data sets
-Version: 1.10.0
+Version: 1.11.0
 Authors@R: c(
     person(given = "Henry",
            family = "Miller",
